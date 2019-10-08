@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialog.Item
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
+        listView.setOnItemLongClickListener(this);
+
     }
 
     @Override
