@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 public class MainActivity extends AppCompatActivity implements CustomDialog.ItemListener,
-                                                    AdapterView.OnItemLongClickListener {
+                                                    AdapterView.OnItemLongClickListener,PopupMenu.OnMenuItemClickListener {
 
     private boolean insertMode;
     private ItemAdapter adapter;
