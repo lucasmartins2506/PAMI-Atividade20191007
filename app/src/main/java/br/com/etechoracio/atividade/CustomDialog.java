@@ -64,4 +64,5 @@ public class CustomDialog extends DialogFragment implements DialogInterface.OnCl
 	public interface ItemListener {
 		void onItem(String name);
 	}
+
 }
