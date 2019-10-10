@@ -10,7 +10,8 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 public class MainActivity extends AppCompatActivity implements CustomDialog.ItemListener,
-                                                    AdapterView.OnItemLongClickListener,PopupMenu.OnMenuItemClickListener {
+                                                    AdapterView.OnItemLongClickListener,
+                                                    PopupMenu.OnMenuItemClickListener {
 
     private boolean insertMode;
     private ItemAdapter adapter;
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialog.Item
 
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
-
         listView.setOnItemLongClickListener(this);
 
     }
@@ -64,12 +64,42 @@ public class MainActivity extends AppCompatActivity implements CustomDialog.Item
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
 
         PopupMenu popup = new PopupMenu(this,view);
-        popup.inflate(R.menu.menu);
+        popup.inflate(R.menu.popup);
+        popup.setOnMenuItemClickListener(this);
         popup.show();
 
+        selectedItem = i;
         return true;
     }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+
+        if (menuItem.getItemId() == R.id.btnExcluir) {
+
+            adapter.removeItem(selectedItem);
+
+            insertMode = false;
+            return true;
+        } else if (menuItem.getItemId() == R.id.btnEditar) {
+
+            CustomDialog dialog = new CustomDialog(this);
+            dialog.show(getFragmentManager(), "btnEditar");
+
+            insertMode = false;
+            return true;
+        }
+            return true;
+
+
+    }
+
+
+
+
+
+
 }
